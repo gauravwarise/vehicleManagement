@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        form{
+            margin-left: 40%;
+        }
+        form h1{
+            /* margin-left: 10px; */
+            margin-right: 650px ;
+        }
+        #goBack{
+            margin-left: 200px;
+        }
+        #login{
+            background-color: blue;
+            color: white;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    {% include 'index.html' %}
+    <form method="POST">
+        {% csrf_token %}
+        <h1>Sign in</h1>
+        <table border="1px solid black">
+            <tr>
+                <td>Username</td>
+                <td><input type="text" name="username" placeholder="Username" required></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="password" placeholder="Enter password" required></td>
+            </tr>
+            <tr>
+                <td><input type="submit" id="login" value="login"></td>
+            </tr>
+        </table>
+
+        {% if messages %}
+            {% for i in messages %}
+                <span>{{ i }}</span>
+            {% endfor %}
+        {% endif %}     
+        </form>
+</body>
+</html>

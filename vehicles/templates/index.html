@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        nav{
+            width: 100%;
+            height: 50px;
+            background-color: blue;
+        }
+        ul{
+            list-style-type: none;
+            
+        }
+        ul li a{
+            text-decoration: none;
+            margin: 10px;
+            color: white;
+            font-size: 22px;
+        }
+        ul li{
+            display: flex;
+        }
+        h1{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+            <li>
+                {% if user.is_authenticated %}
+                <a href="signout">Logout</a><br>
+                {% if user.is_authenticated %}
+                {% if perms.vehicles.add_vehicle %}
+                <a href="create">Add Vehicles</a><br>
+                {% endif %}
+                {% if perms.vehicles.view_vehicle %}
+                <a href="retrieve">View Vehicles</a><br>
+                {% endif %}
+                {% endif %}
+            </li>
+            <li>
+                {% else %}
+                <a href="register">Register</a><br>
+                <a href="signin">Login</a><br>
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
+</body>
+
+</html>

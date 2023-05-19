@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retrieve</title>
+    <style>
+        th,td,tr,table {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    {% include 'index.html' %}
+    <center>
+        <table>
+            <tr>
+                <th>Vehicle Number</th>
+                <th>Vehicle Type</th>
+                <th>Vehicle Model</th>
+                <th>Vehicle Description</th>
+                {% if perms.vehicles.change_vehicle %}
+                <th colspan="100%">Modification</th>
+                {% endif %}
+            </tr>
+            {% for i in vlist %}
+            <tr>
+                <td>{{ i.vehicle_number }}</td>
+                <td>{{ i.vehicle_type }}</td>
+                <td>{{ i.vehicle_model }}</td>
+                <td>{{ i.vehicle_description }}</td>
+                {% if perms.vehicles.change_vehicle %}
+                    <td>
+                        <a href="/change/{{i.id}}">Update</a>
+                    </td>    
+                {% endif %}
+                {% if perms.vehicles.delete_vehicle %}
+                    <td>
+                        <a href="/delete/{{i.id}}">Delete</a>
+                    </td>    
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+</body>
+</html>

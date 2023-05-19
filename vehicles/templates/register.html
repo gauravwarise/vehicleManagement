@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        form{
+            margin-left: 30%;
+        }
+        h1{
+            margin-right: 10%;
+        }
+        #register{
+            background-color: blue;
+            color: white;
+            margin-top: 20px;
+            margin-left: 120%;
+            width: 100px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    {% include 'index.html' %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <h1>Register Here</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+            <tr>
+                <th>Status</th>
+                <td>
+                    <input type="radio" name="access" id="admin" value="admin">
+                    <label for="admin">Admin</label>
+                    <input type="radio" name="access" id="user" value="user">
+                    <label for="user">User</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" id="register" name="submit" value="Register">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>
